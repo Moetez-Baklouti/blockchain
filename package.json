@@ -6,13 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "hardhat": "npx hardhat node",
+    "deploy": "npx hardhat run scripts/deploy.js --network localhost"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "lucide-react": "^0.344.0",
+    "lucide-react": "^0.350.0",
     "next": "14.1.2",
     "react": "^18",
     "react-dom": "^18",
