@@ -1,5 +1,9 @@
 import { ethers } from "ethers";
 import Auth from "../../artifacts/contracts/Auth.sol/Auth.json";
+import Exp from "../../artifacts/contracts/Expedition.sol/Expedition.json";
+
+
+const ExpeditionAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
 
 export async function getUserRole(userAddress) {
     
@@ -16,30 +20,59 @@ export async function getUserRole(userAddress) {
   }
 }
 
-export async function switchNetwork() {
+export async function addExpedition(ref, date) {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(ExpeditionAddress, Exp.abi, provider.getSigner());
+
   try {
-    await ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "31337" }],
-    });
-  } catch (switchError) {
-    // This error code indicates that the chain has not been added to MetaMask.
-    if (switchError.code === 4902) {
-      try {
-        await ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: "31337",
-              chainName: "localhost",
-              rpcUrls: ["http://localhost:8545"],
-            },
-          ],
-        });
-      } catch (addError) {
-        // handle "add" error
-      }
-    }
-    // handle other "switch" errors
+    const transaction = await contract.storeFormData(ref, date);
+    await transaction.wait();
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    throw error;
   }
 }
+
+export async function getLatestReference() {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(ExpeditionAddress, Exp.abi, provider.getSigner());
+
+  try {
+    const reference = await contract.getLatestReference();
+    console.log(reference)
+    return reference;
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    throw error;
+  }
+}
+
+export async function listAllExpedition() {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(ExpeditionAddress, Exp.abi, provider.getSigner());
+
+  try {
+    const formdata = await contract.listAllFormData();
+    return(formdata);
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    throw error;
+  }
+}
+
+export async function getFormDataByReference(ref) {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(ExpeditionAddress, Exp.abi, provider.getSigner());
+
+  try {
+    const formdata = await contract.getFormDataByReference(ref);
+    return(formdata);
+  } catch (error) {
+    console.error("Error fetching user role:", error);
+    throw error;
+  }
+}
+
+
+
+

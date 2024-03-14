@@ -3,16 +3,11 @@ import { useState } from "react";
 import { Wallet } from "lucide-react";
 import { Button } from "./ui/button";
 import { getUserRole } from "@/utils/blockchain";
+import Expedition from "./forms/expedition";
 
 function Login() {
   const [walletAddress, setWalletAddress] = useState("");
   const [acteur, setActeur] = useState(-1);
-  const acteurs = [
-    "Acteur 1",
-    "Acteur 2",
-    "Acteur 3",
-    "Acteur 4"
-  ]
 
   async function requestAccount() {
     // ❌ Check if Meta Mask Extension exists
@@ -53,7 +48,14 @@ function Login() {
         )}
       </header>
       <div>
-        {acteur !== -1 && <p>Vous êtes {acteurs[acteur]}</p>}
+        {acteur !== -1 && (
+          <div>
+            {acteur === 0 && <Expedition />}
+            {acteur === 1 && <div>HTML for Acteur 2</div>}
+            {acteur === 2 && <div>HTML for Acteur 3</div>}
+            {acteur === 3 && <div>HTML for Acteur 4</div>}
+          </div>
+        )}
       </div>
     </div>
   );

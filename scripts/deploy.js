@@ -16,6 +16,15 @@ async function main() {
   await auth.deployed();
 
   console.log("Auth deployed to:", auth.address);
+
+  const Expedition = await hre.ethers.getContractFactory("Expedition");
+
+  const expedition = await Expedition.deploy(); // Deploy the Expedition contract
+
+
+  await expedition.deployed();
+
+  console.log("Expedition deployed to:", expedition.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
