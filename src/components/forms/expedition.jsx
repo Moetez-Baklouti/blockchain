@@ -14,6 +14,17 @@ const Expedition = () => {
   const [src, setSrc] = useState("");
   const [open, setOpen] = React.useState(false);
 
+  async function incrementRef() {
+    const data = await getLatestReference();
+    let inputString = "00000";
+    if (data[0] !== "null") inputString = data[0];
+    var last5Chars = inputString.slice(-5);
+    var num = parseInt(last5Chars, 10);
+    num++;
+    var incrementedId = num.toString().padStart(5, "0");
+    return incrementedId;
+  }
+
   useEffect(() => {
     var today = new Date();
 
@@ -32,14 +43,7 @@ const Expedition = () => {
     setDate(day + "/" + month + "/" + year);
 
     async function fetchData() {
-      const data = await getLatestReference();
-      let inputString = "00000";
-      if (data[0] !== "null") inputString = data[0];
-      var last5Chars = inputString.slice(-5);
-      var num = parseInt(last5Chars, 10);
-      num++;
-      var incrementedId = num.toString().padStart(5, "0");
-
+      const incrementedId = await incrementRef();
       setReference("CO " + year + "-" + incrementedId);
     }
     fetchData();
@@ -67,6 +71,8 @@ const Expedition = () => {
     QRCode.toDataURL(`http://localhost:3000/${data[2]}`).then((val) => setSrc(val));
     setQrcode(data[2]);
     setOpen(true);
+    const incrementedId = await incrementRef();
+    setReference("CO " + new Date().getFullYear() + "-" + incrementedId);
   };
   return (
     <div className="w-100">

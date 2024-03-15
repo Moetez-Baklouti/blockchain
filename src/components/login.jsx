@@ -4,6 +4,7 @@ import { Wallet } from "lucide-react";
 import { Button } from "./ui/button";
 import { getUserRole } from "@/utils/blockchain";
 import Expedition from "./forms/expedition";
+import Acteur2 from "./forms/acteur2";
 
 function Login() {
   const [walletAddress, setWalletAddress] = useState("");
@@ -51,7 +52,7 @@ function Login() {
         {acteur !== -1 && (
           <div>
             {acteur === 0 && <Expedition />}
-            {acteur === 1 && <div>HTML for Acteur 2</div>}
+            {acteur === 1 && <Acteur2/>}
             {acteur === 2 && <div>HTML for Acteur 3</div>}
             {acteur === 3 && <div>HTML for Acteur 4</div>}
           </div>
