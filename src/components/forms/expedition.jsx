@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import QRCode from "qrcode";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { addExpedition, getLatestReference, listAllExpedition, getFormDataByReference } from "@/utils/blockchain";
+import { addExpedition, getLatestReference, getFormDataByReference } from "@/utils/blockchain";
 import { QrCodeDialog } from "@/components/qrcode-dialog";
 
 
@@ -68,7 +67,6 @@ const Expedition = () => {
     await addExpedition(reference, date);
     const data = await getFormDataByReference(reference);
     console.log(data);
-    QRCode.toDataURL(`http://localhost:3000/${data[2]}`).then((val) => setSrc(val));
     setQrcode(data[2]);
     setOpen(true);
     const incrementedId = await incrementRef();

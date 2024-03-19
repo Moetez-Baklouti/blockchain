@@ -13,6 +13,7 @@ import {
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import QRCode from "react-qr-code";
 
 export function QrCodeDialog({ qrcode, open, setOpen, image }) {
   return (
@@ -23,7 +24,11 @@ export function QrCodeDialog({ qrcode, open, setOpen, image }) {
           <DialogDescription>
             Anyone who has this code will be able to review your expedition.
           </DialogDescription>
-          <Image alt="qrcode" width={500} height={500} src={image} />
+          <QRCode
+            size={256}
+            style={{ height: "230px", width: "394px" }}
+            value={qrcode}
+          />
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">

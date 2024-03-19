@@ -6,6 +6,7 @@ import { DataTable } from "@/components/ui/datatable";
 
 const Acteur2 = () => {
     const [expeditions, SetExpeditions] = useState([]);
+
     useEffect(() => {
         async function fetchData() {
           const data = await listAllExpedition();

@@ -42,7 +42,7 @@ export async function getLatestReference() {
     console.log(reference)
     return reference;
   } catch (error) {
-    console.error("Error fetching user role:", error);
+    console.error("Error fetching user Latest:", error);
     throw error;
   }
 }
@@ -55,7 +55,7 @@ export async function listAllExpedition() {
     const formdata = await contract.listAllFormData();
     return(formdata);
   } catch (error) {
-    console.error("Error fetching user role:", error);
+    console.error("Error fetching Expedition:", error);
     throw error;
   }
 }
@@ -68,7 +68,20 @@ export async function getFormDataByReference(ref) {
     const formdata = await contract.getFormDataByReference(ref);
     return(formdata);
   } catch (error) {
-    console.error("Error fetching user role:", error);
+    console.error("Error fetching Expedition by Reference:", error);
+    throw error;
+  }
+}
+
+export async function getFormDataByQrCode(code) {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const contract = new ethers.Contract(ExpeditionAddress, Exp.abi, provider.getSigner());
+
+  try {
+    const formdata = await contract.getFormDataByQR(code);
+    return(formdata);
+  } catch (error) {
+    console.error("Error fetching Expedition by qrcode:", error);
     throw error;
   }
 }
