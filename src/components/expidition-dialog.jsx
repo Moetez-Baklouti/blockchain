@@ -14,15 +14,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getFormDataByQrCode } from "@/utils/blockchain";
+import { useRouter } from 'next/navigation'
 
 export function ExpidetionDialog({ reference, date }) {
   const [qrcode, setQrcode] = useState("");
+  const router = useRouter()
 
   const handleSubmit = async (formdata) => {
     const qr = formdata.get("qrcode")
     const data = await getFormDataByQrCode(qr);
     if (qr===data[2]){
-      alert("Provided the correct Code!")
+      if (reference===data[0]){
+        router.push("/expedition/" + data[2])
+      } else {
+        alert("Sorry, wrong code")
+      }
     } else {
       alert("Provided the wrong Code!")
     }
