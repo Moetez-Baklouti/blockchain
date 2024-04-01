@@ -5,12 +5,11 @@ import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 import { getFormDataByQrCode } from "@/utils/blockchain";
 
-export default function Page({ params }) {
+export default function PageActeur2({ qrcode }) {
   const [formData, setFormData] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const formdata = await getFormDataByQrCode(params.qrcode);
-      console.log(formData);
+      const formdata = await getFormDataByQrCode(qrcode);
       setFormData(formdata);
     }
     fetchData();

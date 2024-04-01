@@ -1,5 +1,5 @@
 import { SendHorizontal } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,25 +14,26 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getFormDataByQrCode } from "@/utils/blockchain";
-import { useRouter } from 'next/navigation'
+import { Acteur2Context } from "@/components/forms/acteur2";
 
 export function ExpidetionDialog({ reference, date }) {
   const [qrcode, setQrcode] = useState("");
-  const router = useRouter()
+  const { SetSubmitted, setCode } = useContext(Acteur2Context);
 
-  const handleSubmit = async (formdata) => {
-    const qr = formdata.get("qrcode")
-    const data = await getFormDataByQrCode(qr);
-    if (qr===data[2]){
-      if (reference===data[0]){
-        router.push("/expedition/" + data[2])
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = await getFormDataByQrCode(qrcode);
+    if (qrcode === data[2]) {
+      if (reference === data[0]) {
+        setCode(qrcode);
+        SetSubmitted(true);
       } else {
-        alert("Sorry, wrong code")
+        alert("Sorry, wrong code");
       }
     } else {
-      alert("Provided the wrong Code!")
+      alert("Provided the wrong Code!");
     }
-  }
+  };
 
   return (
     <Dialog>
@@ -44,11 +45,7 @@ export function ExpidetionDialog({ reference, date }) {
           <DialogTitle>{reference}</DialogTitle>
           <DialogDescription>Date Demande: {date}</DialogDescription>
         </DialogHeader>
-        <form
-          action={async (qr) => {
-            await handleSubmit(qr);
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <div className="flex items-center space-x-2">
             <div className="grid flex-1 gap-2">
               <Label htmlFor="qrcode" className="sr-only">
