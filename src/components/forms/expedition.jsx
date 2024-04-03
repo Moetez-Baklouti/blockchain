@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { addExpedition, getLatestReference, getFormDataByReference } from "@/utils/blockchain";
+import {
+  addExpedition,
+  getLatestReference,
+  getFormDataByReference,
+} from "@/utils/blockchain";
 import { QrCodeDialog } from "@/components/qrcode-dialog";
-
 
 const Expedition = () => {
   const [date, setDate] = useState("");
@@ -73,170 +75,237 @@ const Expedition = () => {
     setReference("CO " + new Date().getFullYear() + "-" + incrementedId);
   };
   return (
-    <div className="w-100">
-      <form
-        className="max-w-2000 mx-auto bg-white p-20 rounded-lg shadow-md grid grid-cols-3 gap-20"
-        action={async (formData) => {
-          await handleSubmit(formData);
-        }}
-      >
-        <div>
-          <label className="block mb-8 font-bold" htmlFor="Reference">
-            Reference :
-          </label>
-          <Input
-            type="text"
-            id="Reference"
-            value={reference}
-            name="Reference"
-            disabled
-          />
+      <div className="min-h-screen p-6 flex items-center justify-center">
+        <div className="container max-w-screen-lg mx-auto">
+          <div>
+            <h2 className="font-semibold text-xl text-gray-600">
+              Référence: {reference}
+            </h2>
+            <p className="text-gray-500 mb-6">Date: {date}</p>
+
+            <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+              <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+                <div className="text-gray-600">
+                  <p className="font-medium text-lg">Information Générales</p>
+                  <p>Veuillez remplir tous les champs.</p>
+                </div>
+
+                <div className="lg:col-span-2">
+                  <form
+                    action={async (formData) => {
+                      await handleSubmit(formData);
+                    }}
+                  >
+                    <input type="hidden" id="Reference" name="Reference" value={reference}></input>
+                    <input type="hidden" id="DateDemande" name="DateDemande" value={date}></input>
+                    <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                      <legend className="text-lg font-medium">Client</legend>
+                      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                        <div className="md:col-span-3">
+                          <label htmlFor="donneur_ordre">Donneur D'ordre:</label>
+                          <input
+                            type="text"
+                            name="donneur_ordre"
+                            id="donneur_ordre"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-2">
+                          <label htmlFor="contact">Contact:</label>
+                          <input
+                            type="text"
+                            name="contact"
+                            id="contact"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-5">
+                          <label htmlFor="adresse">Adresse:</label>
+                          <input
+                            type="text"
+                            name="adresse"
+                            id="adresse"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-1">
+                          <label htmlFor="telephone">Telephone:</label>
+                          <input
+                            type="text"
+                            name="telephone"
+                            id="telephone"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-1">
+                          <label htmlFor="fax">Fax:</label>
+                          <input
+                            type="text"
+                            name="fax"
+                            id="fax"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-3">
+                          <label htmlFor="email">Email:</label>
+                          <input
+                            type="text"
+                            name="email"
+                            id="email"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                      <legend className="text-lg font-medium">Départ</legend>
+                      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                        <div className="md:col-span-5">
+                          <label htmlFor="adresse">Adresse:</label>
+                          <input
+                            type="text"
+                            name="adresse"
+                            id="adresse"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-3">
+                          <label htmlFor="pays">Pays:</label>
+                          <input
+                            type="text"
+                            name="pays"
+                            id="pays"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-2">
+                          <label htmlFor="ville">Ville:</label>
+                          <input
+                            type="text"
+                            name="ville"
+                            id="ville"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-2">
+                          <label htmlFor="code_postal">Code postal:</label>
+                          <input
+                            type="text"
+                            name="code_postal"
+                            id="code_postal"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-3">
+                          <label htmlFor="port">Port:</label>
+                          <input
+                            type="text"
+                            name="port"
+                            id="port"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                      <legend className="text-lg font-medium">Arrivée</legend>
+                      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                        <div className="md:col-span-5">
+                          <label htmlFor="adresse">Adresse:</label>
+                          <input
+                            type="text"
+                            name="adresse"
+                            id="adresse"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-3">
+                          <label htmlFor="pays">Pays:</label>
+                          <input
+                            type="text"
+                            name="pays"
+                            id="pays"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-2">
+                          <label htmlFor="ville">Ville:</label>
+                          <input
+                            type="text"
+                            name="ville"
+                            id="ville"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-2">
+                          <label htmlFor="code_postal">Code postal:</label>
+                          <input
+                            type="text"
+                            name="code_postal"
+                            id="code_postal"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+
+                        <div className="md:col-span-3">
+                          <label htmlFor="port">Port:</label>
+                          <input
+                            type="text"
+                            name="port"
+                            id="port"
+                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                          />
+                        </div>
+                      </div>
+                    </fieldset>
+                    <br></br>
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                      <div className="md:col-span-3">
+                        <label htmlFor="incoterm">Incoterm:</label>
+                        <input
+                          type="text"
+                          name="incoterm"
+                          id="incoterm"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="remarques">Remarques:</label>
+                        <input
+                          type="text"
+                          name="remarques"
+                          id="remarques"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                    <br></br>
+                    <div className="md:col-span-5 text-right">
+                      <div className="inline-flex items-end">
+                        <Button type="submit">Ajouter</Button>
+                      </div>
+                    </div>
+                  </form>
+                  <QrCodeDialog qrcode={qrcode} open={open} setOpen={setOpen} image={src}/>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label className="block mb-8 font-bold" htmlFor="DateDemande">
-            Date Demande :
-          </label>
-          <Input
-            type="text"
-            id="DateDemande"
-            value={date}
-            name="DateDemande"
-            disabled
-          />
-        </div>
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend className="font-bold">Client</legend>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Donneur">
-                Donneur D'ordre :
-              </label>
-              <Input type="text" id="Donneur" name="Donneur" />
-            </div>
-            <div>
-              <label className="block mb-8 font-bold" htmlFor="Adresse">
-                Adresse :
-              </label>
-              <Input type="text" id="Adresse" name="Adresse" />
-            </div>
-            <div>
-              <label className="block mb-8 font-bold" htmlFor="Mail">
-                Mail :
-              </label>
-              <Input type="text" id="Mail" name="Mail" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Fax">
-                Fax :
-              </label>
-              <Input type="text" id="Fax" name="Fax" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Telepone">
-                Telephone :
-              </label>
-              <Input type="text" id="Telepone" name="Telepone" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Contacts">
-                Contacts :
-              </label>
-              <Input type="text" id="Contacts" name="Contacts" />
-            </div>
-          </div>
-        </fieldset>
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend className="font-bold">Départ</legend>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Adresse1">
-                Adresse :
-              </label>
-              <Input type="text" id="Adresse1" name="Adresse1" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Pays">
-                Pays :
-              </label>
-              <Input type="text" id="Pays" name="Pays" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="CodeP">
-                Code Postale :
-              </label>
-              <Input type="text" id="CodeP" name="CodeP" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Ville">
-                Ville :
-              </label>
-              <Input type="text" id="Ville" name="Ville" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Port">
-                Port :
-              </label>
-              <Input type="text" id="Port" name="Port" />
-            </div>
-          </div>
-        </fieldset>
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend className="font-bold">Arrivée</legend>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Adresse2">
-                Adresse :
-              </label>
-              <Input type="text" id="Adresse2" name="Adresse2" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Pays1">
-                Pays :
-              </label>
-              <Input type="text" id="Pays1" name="Pays1" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Code2">
-                Code Postal :
-              </label>
-              <Input type="text" id="Code2" name="Code2" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Faxdes">
-                Ville :
-              </label>
-              <Input type="text" id="Faxdes" name="Faxdes" />
-            </div>
-            <div className="w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 mr-0 sm:mr-10 md:mr-10 lg:mr-10 xl:mr-10">
-              <label className="block mb-8 font-bold" htmlFor="Teleponedes">
-                Port:
-              </label>
-              <Input type="text" id="Teleponedes" name="Teleponedes" />
-            </div>
-          </div>
-        </fieldset>
-        <div>
-          <label className="block mb-8 font-bold" htmlFor="Refachat">
-            Incoterm :
-          </label>
-          <Input type="text" id="Refachat" name="Refachat" />
-        </div>
-        <div>
-          <label className="block mb-8 font-bold" htmlFor="Refclient">
-            Remarques :
-          </label>
-          <Input type="text" id="Refclient" name="Refclient" />
-        </div>
-        <Button type="submit">Ajouter</Button>
-        <QrCodeDialog qrcode={qrcode} open={open} setOpen={setOpen} image={src}/>
-      </form>
-    </div>
+      </div>
   );
 };
 

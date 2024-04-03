@@ -40,7 +40,7 @@ function Login() {
     <div>
       <header>
         {walletAddress === "" ? (
-          <Button className="w-300" onClick={connectWallet}>
+          <Button onClick={connectWallet}>
             <Wallet className="mr-2 h-4 w-4" />
             Connect Wallet
           </Button>

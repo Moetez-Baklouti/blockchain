@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -13,174 +13,360 @@ export default function PageActeur2({ qrcode }) {
       setFormData(formdata);
     }
     fetchData();
-    
   }, []);
 
-  if (typeof formData === 'undefined' || typeof formData[0] == 'undefined' || formData[0] === '') {
+  if (
+    typeof formData === "undefined" ||
+    typeof formData[0] == "undefined" ||
+    formData[0] === ""
+  ) {
     return <div></div>;
   }
-  
-  
+
   return (
-    <div>
-      <h3><b>Reference: {formData[0]}</b></h3>
-      <form className="max-w-2xl bg-white p-4 rounded-lg shadow-md grid grid-cols-3 gap-4">
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend>Fourniture</legend>
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Fournisseur">Fournisseur :</Label>
-              <Input type="text" id="Fournisseur" name="Fournisseur" />
-            </div>
-            <div>
-              <Label for="Adresse">Adresse :</Label>
-              <Input type="text" id="Adresse" name="Adresse" />
-            </div>
-            <div>
-              <Label for="Mail">Mail :</Label>
-              <Input type="text" id="Mail" name="Mail" />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Fax">Fax :</Label>
-              <Input type="text" id="Fax" name="Fax" />
-            </div>
-            <div>
-              <Label for="Telepone">Telephone :</Label>
-              <Input type="text" id="Telepone" name="Telepone" />
-            </div>
-            <div>
-              <Label for="Personne">Personne à contacter :</Label>
-              <Input type="text" id="Personne" name="Personne" />
-            </div>
-          </div>
-        </fieldset>
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend>Enlévement</legend>
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Lieu">Lieu D'enlevement :</Label>
-              <Input type="text" id="Lieu" name="Lieu" />
-            </div>
-            <div>
-              <Label for="Adresseenv">Adresse D'enlevement :</Label>
-              <Input type="text" id="Adresseenv" name="Adresseenv" />
-            </div>
-            <div>
-              <Label for="Mailenv">Mail D'enlevement :</Label>
-              <Input type="text" id="Mailenv" name="Mailenv" />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Faxenv">Fax D'enlevement :</Label>
-              <Input type="text" id="Faxenv" name="Faxenv" />
-            </div>
-            <div>
-              <Label for="Teleponeenv">Telephone D'enlevement :</Label>
-              <Input type="text" id="Teleponeenv" name="Teleponeenv" />
-            </div>
-            <div>
-              <Label for="Personneenv">
-                Personne à contacter D'enlevement :
-              </Label>
-              <Input type="text" id="Personneenv" name="Personneenv" />
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend>Destination</legend>
-
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Destinaire">Destinataire :</Label>
-              <Input type="text" id="Destinaire" name="Destinaire" />
-            </div>
-            <div>
-              <Label for="Adressedes">Adresse De Destination :</Label>
-              <Input type="text" id="Adressedes" name="Adressedes" />
-            </div>
-            <div>
-              <Label for="Maildes">Mail De Destination :</Label>
-              <Input type="text" id="Maildes" name="Maildes" />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Faxdes">Fax De Destination :</Label>
-              <Input type="text" id="Faxdes" name="Faxdes" />
-            </div>
-            <div>
-              <Label for="Teleponedes">Telephone De Destination :</Label>
-              <Input type="text" id="Teleponedes" name="Teleponedes" />
-            </div>
-            <div>
-              <Label for="Personnedes">
-                Personne à contacter De Destination :
-              </Label>
-              <Input type="text" id="Personnedes" name="Personnedes" />
-            </div>
-          </div>
-        </fieldset>
-        <fieldset className="border border-gray-300 rounded-md p-4 col-span-3">
-          <legend>Livraison</legend>
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Lieuliv">Lieu De Livraison :</Label>
-              <Input type="text" id="Lieuliv" name="Lieuliv" />
-            </div>
-
-            <div>
-              <Label for="Adresseliv">Adresse De Livraison :</Label>
-              <Input type="text" id="Adresseliv" name="Adresseliv" />
-            </div>
-            <div>
-              <Label for="Mailliv">Mail De Livraison :</Label>
-              <Input type="text" id="Mailliv" name="Mailliv" />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-between">
-            <div>
-              <Label for="Faxliv">Fax De Livraison :</Label>
-
-              <Input type="text" id="Faxliv" name="Faxliv" />
-            </div>
-            <div>
-              <Label for="Teleponeliv">Telephone De Livraison :</Label>
-              <Input type="text" id="Teleponeliv" name="Teleponeliv" />
-            </div>
-            <div>
-              <Label for="Personneliv">
-                Personne à contacter De Livraison :
-              </Label>
-              <Input type="text" id="Personneliv" name="Personneliv" />
-            </div>
-          </div>
-        </fieldset>
-
+    <div className="min-h-screen p-6 flex items-center justify-center">
+      <div className="container max-w-screen-lg mx-auto">
         <div>
-          <Label for="Refachat">Réf.Achat.Fret :</Label>
-          <Input type="text" id="Refachat" name="Refachat" />
+          <h2 className="font-semibold text-xl text-gray-600">
+            Référence: {formData[0]}
+          </h2>
+          <p className="text-gray-500 mb-6">Date: {formData[1]}</p>
 
-          <Label for="Refclient">Réf.Client :</Label>
-          <Input type="text" id="Refclient" name="Refclient" />
-        </div>
-        <div>
-          <Label for="Note">Note :</Label>
-          <Input type="text" id="Note" name="Note" />
-        </div>
-        <div>
-          <Label for="Emailro">Email RO :</Label>
-          <Input type="text" id="Emailro" name="Emailro" />
-        </div>
+          <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
+            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-gray-600">
+                <p className="font-medium text-lg">Valider Expedition</p>
+                <p>Veuillez remplir tous les champs.</p>
+              </div>
 
-        <Button type="submit">Ajouter</Button>
-      </form>
+              <div className="lg:col-span-2">
+                <form
+                  action={
+                    /*async (formData) => {
+                      await handleSubmit(formData);
+                    }*/
+                    console.log("valider expedition")
+                  }
+                >
+                  <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                    <legend className="text-lg font-medium">Fourniture</legend>
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                      <div className="md:col-span-3">
+                        <label htmlFor="fournissuer">Fournisseur:</label>
+                        <input
+                          type="text"
+                          name="fournissuer"
+                          id="fournissuer"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label htmlFor="contact">Personne à contacter:</label>
+                        <input
+                          type="text"
+                          name="contact"
+                          id="contact"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-5">
+                        <label htmlFor="adresse">Adresse:</label>
+                        <input
+                          type="text"
+                          name="adresse"
+                          id="adresse"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="telephone">Telephone:</label>
+                        <input
+                          type="text"
+                          name="telephone"
+                          id="telephone"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="fax">Fax:</label>
+                        <input
+                          type="text"
+                          name="fax"
+                          id="fax"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                    <legend className="text-lg font-medium">Enlèvement</legend>
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                      <div className="md:col-span-3">
+                        <label htmlFor="lieu">Lieu d'enlèvement:</label>
+                        <input
+                          type="text"
+                          name="lieu"
+                          id="lieu"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label htmlFor="contact">Personne à contacter:</label>
+                        <input
+                          type="text"
+                          name="contact"
+                          id="contact"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-5">
+                        <label htmlFor="adresse">Adresse:</label>
+                        <input
+                          type="text"
+                          name="adresse"
+                          id="adresse"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="telephone">Telephone:</label>
+                        <input
+                          type="text"
+                          name="telephone"
+                          id="telephone"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="fax">Fax:</label>
+                        <input
+                          type="text"
+                          name="fax"
+                          id="fax"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                    <legend className="text-lg font-medium">Destination</legend>
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                      <div className="md:col-span-3">
+                        <label htmlFor="destinataire">Destinataire:</label>
+                        <input
+                          type="text"
+                          name="destinataire"
+                          id="destinataire"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label htmlFor="contact">Personne à contacter:</label>
+                        <input
+                          type="text"
+                          name="contact"
+                          id="contact"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-5">
+                        <label htmlFor="adresse">Adresse:</label>
+                        <input
+                          type="text"
+                          name="adresse"
+                          id="adresse"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="telephone">Telephone:</label>
+                        <input
+                          type="text"
+                          name="telephone"
+                          id="telephone"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="fax">Fax:</label>
+                        <input
+                          type="text"
+                          name="fax"
+                          id="fax"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                    <legend className="text-lg font-medium">Livraison</legend>
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+                      <div className="md:col-span-3">
+                        <label htmlFor="lieu_livraison">Lieu De Livraison:</label>
+                        <input
+                          type="text"
+                          name="lieu_livraison"
+                          id="lieu_livraison"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-2">
+                        <label htmlFor="contact">Personne à contacter:</label>
+                        <input
+                          type="text"
+                          name="contact"
+                          id="contact"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-5">
+                        <label htmlFor="adresse">Adresse:</label>
+                        <input
+                          type="text"
+                          name="adresse"
+                          id="adresse"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="telephone">Telephone:</label>
+                        <input
+                          type="text"
+                          name="telephone"
+                          id="telephone"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-1">
+                        <label htmlFor="fax">Fax:</label>
+                        <input
+                          type="text"
+                          name="fax"
+                          id="fax"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                          type="text"
+                          name="email"
+                          id="email"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <br></br>
+
+                  <fieldset className="lg:col-span-2 p-6 rounded-lg border">
+                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
+                      <div className="md:col-span-3">
+                        <label htmlFor="ref_achat">Réf.Achat Fret:</label>
+                        <input
+                          type="text"
+                          name="ref_achat"
+                          id="ref_achat"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-3">
+                        <label htmlFor="ref_client">Réf.Client:</label>
+                        <input
+                          type="text"
+                          name="ref_client"
+                          id="ref_client"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-6">
+                        <label htmlFor="note">Note:</label>
+                        <input
+                          type="text"
+                          name="note"
+                          id="note"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+
+                      <div className="md:col-span-6">
+                        <label htmlFor="email_ro">Email RO:</label>
+                        <input
+                          type="text"
+                          name="email_ro"
+                          id="email_ro"
+                          className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                        />
+                      </div>
+                    </div>
+                  </fieldset>
+
+                  <br></br>
+
+                  <div className="md:col-span-5 text-right">
+                    <div className="inline-flex items-end">
+                      <Button type="submit">Ajouter</Button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
