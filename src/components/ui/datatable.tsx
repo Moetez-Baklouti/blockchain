@@ -66,7 +66,7 @@ const columns: ColumnDef<Expedition>[] = [
       const expedition = row.original;
 
       return (
-        <ExpidetionDialog reference={expedition[0]} date={expedition[1]}/>
+        <ExpidetionDialog reference={expedition[0]} date={expedition[1]} buttonText={expedition['text']}/>
       );
     },
   },

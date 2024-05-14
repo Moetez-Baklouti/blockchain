@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { getFormDataByQrCode } from "@/utils/blockchain";
 import { Acteur2Context } from "@/components/forms/acteur2";
 
-export function ExpidetionDialog({ reference, date }) {
+export function ExpidetionDialog({ reference, date, buttonText }) {
   const [qrcode, setQrcode] = useState("");
   const { SetSubmitted, setCode } = useContext(Acteur2Context);
 
@@ -38,7 +38,7 @@ export function ExpidetionDialog({ reference, date }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Valider Expedition</Button>
+        <Button variant="outline">{buttonText}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>

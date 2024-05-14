@@ -3,10 +3,9 @@ import React, { useState, useEffect, createContext } from "react";
 import { listAllExpedition } from "@/utils/blockchain";
 import { DataTable } from "@/components/ui/datatable";
 import PageActeur2 from "./acteur2.2";
+import {Acteur2Context} from "./acteur2";
 
-const Acteur2Context = createContext();
-
-const Acteur2 = ({ acteur }) => {
+const Acteur4 = ({acteur}) => {
   const [expeditions, SetExpeditions] = useState([]);
   const [submitted, SetSubmitted] = useState(false);
   const [code, setCode] = useState("");
@@ -15,8 +14,7 @@ const Acteur2 = ({ acteur }) => {
     async function fetchData() {
       const data = await listAllExpedition();
 
-      const newItemText =
-      acteur === "Acteur2" ? "Valider Expedition" : "Assurer l'Expedition";
+      const newItemText = "Confirmer la reception";
 
       const updatedExpeditions = data.map((obj) => {
         console.log(obj)
@@ -28,12 +26,12 @@ const Acteur2 = ({ acteur }) => {
 
       SetExpeditions(updatedExpeditions);
     }
-
     fetchData();
   }, []);
 
   if (submitted) {
-    return <PageActeur2 qrcode={code} acteur={acteur} />;
+    alert("Success");
+    SetSubmitted(false);
   }
 
   return (
@@ -41,7 +39,9 @@ const Acteur2 = ({ acteur }) => {
       <div className="min-h-screen p-6 flex items-center justify-center">
         <div className="container max-w-screen-lg mx-auto">
           <div>
-            <h2 className="font-semibold text-xl text-gray-600">Expeditions</h2>
+            <h2 className="font-semibold text-xl text-gray-600">
+              Expeditions
+            </h2>
             <p className="text-gray-500 mb-6">{`Bonjour ${acteur}...`}</p>
 
             <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
@@ -62,5 +62,4 @@ const Acteur2 = ({ acteur }) => {
   );
 };
 
-export default Acteur2;
-export { Acteur2Context };
+export default Acteur4;
